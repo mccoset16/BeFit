@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
-
+//I keep this for reference because I am not very familiar with Unity yet.
 namespace fitNessmod
 {
     class MissedCounter : MonoBehaviour
