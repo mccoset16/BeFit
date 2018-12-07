@@ -9,7 +9,7 @@ namespace fitNessmod
     {
         
         public static Vector3 menuPosition = new Vector3(0f, 0.3f, 1.25f);
-        public static Quaternion slantBottom = Quaternion.Euler(30, 0, 0);
+        public static Quaternion slantBottom = Quaternion.Euler(35, 0, 0);
         private int lifeCalories = ModPrefs.GetInt("fitNessMod", "lifeCalories", 0, true);
         private int dailyCalories = ModPrefs.GetInt("fitNessMod", "dailyCalories", 0, true);
         private int currentSessionCals = ModPrefs.GetInt("fitNessMod", "sessionCalories", 0, true);
@@ -124,7 +124,7 @@ namespace fitNessmod
             lgcText.rectTransform.position = menuPosition + new Vector3(2.5f, -0.6f, 0f);
             lgcText.rectTransform.rotation = Quaternion.Euler(0, 60, 0);
 
-            //Init Last Game Song name Label
+            //Init Last Game Song name Label // Displays version number on launch
             /////////////////////////////////////////////////////////////////////////
             countLGC = new GameObject("countLGClabel").gameObject.AddComponent<TextMeshPro>();
             countLGC.text = version;
@@ -137,9 +137,8 @@ namespace fitNessmod
             /////////////////////////////////////////////////////////////////////////
             //Init Last Game Calories Counter Label
             /////////////////////////////////////////////////////////////////////////
-
             labelLG = new GameObject("countLGClabel").gameObject.AddComponent<TextMeshPro>();
-            labelLG.text = "Fitness Mod";
+            labelLG.text = "BeFit Mod"; //I'm not set on the name
             labelLG.fontSize = 2f;
             labelLG.color = Color.white;
             labelLG.font = Resources.Load<TMP_FontAsset>("Beon SDF No-Glow");

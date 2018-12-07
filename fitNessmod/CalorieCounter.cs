@@ -1,11 +1,9 @@
 ﻿using IllusionPlugin;
 using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 namespace fitNessmod
@@ -20,7 +18,7 @@ namespace fitNessmod
         private int dailyCalories = ModPrefs.GetInt("fitNessMod", "dailyCalories", 0, true);
         private int currentSessionCals = ModPrefs.GetInt("fitNessMod", "sessionCalories", 0, true);
         float bladespeed;
-        float calMul = 0.07772312121f; //Determines Calories per hit by swing rating. [0.8, 0.9] tested range
+        float calMul = 0.07676767f; //Determines Calories per hit by swing rating. [0.07676767, 0.9] tested range
         GameObject countGo;
         TextMeshPro counterText;
 

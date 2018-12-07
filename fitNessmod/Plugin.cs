@@ -1,6 +1,11 @@
-﻿using IllusionPlugin;
+﻿/* BeFit | fitNessMod
+ * Purpose: Count and store calories burned while playing BeatSaber
+ * Date: 12/7/18
+ * O: Viscoci
+ * C: --
+ * */
+using IllusionPlugin;
 using UnityEngine;
-using System.Linq;
 using UnityEngine.SceneManagement;
 using System;
 
@@ -8,8 +13,8 @@ namespace fitNessmod
 {
     public class Plugin : IPlugin
     {
-        public string Name => "fitNessmod";
-        public string Version => "0.0.5";
+        public string Name => "fitNessMod";
+        public string Version => "0.1.0";
         bool enabled = true;
         private readonly string[] env = { "DefaultEnvironment", "BigMirrorEnvironment", "TriangleEnvironment", "NiceEnvironment" };
         private int lifeCalories = ModPrefs.GetInt("fitNessMod", "lifeCalories", 0, true);
@@ -40,11 +45,9 @@ namespace fitNessmod
                 calCount = null;
                 calCount = new GameObject("CalorieCounter").AddComponent<CalorieCounter>();
                 Console.WriteLine("[fitNessMod | LOG] calorie counter loaded!");
-                
-
             }
             
-            if (arg1.name == "Menu" || arg1.name == "HealthWarning") //
+            if (arg1.name == "Menu" /*|| arg1.name == "HealthWarning"*/) //On menu == display. HealthWarning used for layout setup. Will be removed later.
             {
                 if (display != null) { return; }
                 display = new GameObject("MenuDisplay").AddComponent<MenuDisplay>();
