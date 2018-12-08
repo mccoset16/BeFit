@@ -14,8 +14,9 @@ namespace fitNessmod
     public class Plugin : IPlugin
     {
         public string Name => "fitNessMod";
-        public string Version => "0.1.0";
+        public string Version => "0.1.0"; //Patch 1 Fixed Tutorial Crash
         bool enabled = true;
+        bool safetyEnabled = false;
         private readonly string[] env = { "DefaultEnvironment", "BigMirrorEnvironment", "TriangleEnvironment", "NiceEnvironment" };
         private int lifeCalories = ModPrefs.GetInt("fitNessMod", "lifeCalories", 0, true);
         private int dailyCalories = ModPrefs.GetInt("fitNessMod", "dailyCalories", 0, true);
@@ -39,7 +40,8 @@ namespace fitNessmod
 
         private void SceneManagerOnActiveSceneChanged(Scene arg0, Scene arg1)
         {
-            if (!enabled) return;
+            if (!enabled && safetyEnabled) return;
+            
             if (arg1.name == "GameCore") {  //Launch calories counter
                 Console.WriteLine("[fitNessMod | LOG] Scene Loaded succesfully");
                 calCount = null;
@@ -50,6 +52,7 @@ namespace fitNessmod
             if (arg1.name == "Menu" /*|| arg1.name == "HealthWarning"*/) //On menu == display. HealthWarning used for layout setup. Will be removed later.
             {
                 if (display != null) { return; }
+                display = null;
                 display = new GameObject("MenuDisplay").AddComponent<MenuDisplay>();
                 Console.WriteLine("[fitNessMod | LOG] Menu  calories displayed");
             }
@@ -58,6 +61,12 @@ namespace fitNessmod
 
         private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
+            if (arg0.name == "TutorialEnvironment")
+            {
+                safetyEnabled = true; //Disable mod
+                return;
+            }
+            else { safetyEnabled = true; } //Enable Mod
         }
 
         public void OnApplicationQuit()
